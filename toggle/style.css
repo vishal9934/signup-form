@@ -1,0 +1,13 @@
+#div1{
+    width: 200px;
+    height: 200px;
+    background-color: aqua;
+
+}
+#div2{
+    width: 200px;
+    height: 200px;
+    background-color: rgb(25, 26, 26);
+    display: none;
+
+}

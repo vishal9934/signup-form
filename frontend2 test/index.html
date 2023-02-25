@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book Issuance System</title>
+    <style>
+		body{
+			background-color: black;
+		}
+      table {
+        border: 1px solid black;
+
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 8px;
+        border: 1px solid white;
+      }
+      th {
+        background-color: black;
+      }
+      /* tr:nth-child(even) {
+        background-color: #f2f2f2;
+      } */
+      .status {
+        font-weight: bold;
+      }
+      .status.returned {
+        color: green;
+      }
+      .status.not-returned {
+        color: red;
+      }
+      .status {
+        cursor: pointer;
+      }
+	  th{
+		color: white;
+	  }
+	  h1{
+		color: white;
+	  }
+	  label{
+		color: white;
+	  }
+	  td{
+		color: white;
+	  }
+	
+    </style>
+  </head>
+  <body>
+    <h1>Library Management system</h1>
+    <form>
+      <label for="book-name">Book Name</label>
+      <input type="text" id="book-name" />
+      <br /><br />
+      <label for="issued-to">Issued To</label>
+      <input type="text" id="issued-to" />
+      <br /><br />
+      <button type="button" onclick="issueBook()">Issue Book</button>
+    </form>
+    <br /><br />
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Book Name</th>
+          <th>Issued To</th>
+          <th>Issued Time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="issued-books-table"></tbody>
+    </table>
+
+    <script>
+      let issuedBooks = [];
+
+      function issueBook() {
+        const bookName = document.getElementById("book-name").value;
+        const issuedTo = document.getElementById("issued-to").value;
+        const issuedTime = new Date();
+        const bookId = issuedBooks.length + 1;
+        const bookStatus = "not returned";
+
+        issuedBooks.push({
+          id: bookId,
+          book_name: bookName,
+          issued_to: issuedTo,
+          issued_time: issuedTime,
+          status: bookStatus,
+        });
+
+        refreshTable();
+      }
+
+      function refreshTable() {
+        const tableBody = document.getElementById("issued-books-table");
+        tableBody.innerHTML = "";
+
+        issuedBooks.forEach((book) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+					<td>${book.id}</td>
+					<td>${book.book_name}</td>
+					<td>${book.issued_to}</td>
+					<td>${book.issued_time}</td>
+					<td class="status ${book.status.replace(" ", "-")}">${book.status}</td>
+				`;
+          row.onclick = () => editBookStatus(book);
+          tableBody.appendChild(row);
+        });
+      }
+
+      function editBookStatus(book) {
+        if (book.status === "not returned") {
+          book.status = "returned";
+        } else {
+          book.status = "not returned";
+        }
+        refreshTable();
+      }
+    </script>
+  </body>
+</html>

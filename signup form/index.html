@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form validation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h3 id="heading"></h3>
+    <form action="#">
+        <div class="inputText">
+            <label for="name">Name</label>
+            <input type="text" id="name" data-testid="name" required>
+        </div>
+
+        <div class="inputText">
+            <label for="email">Email address</label>
+            <input type="email" id="email" data-testid="email" required>
+        </div>
+        
+        <div class="inputText">
+            <label for="gender">Gender</label>
+            <select name="" id="gender" data-testid ="gender" >
+                <option selected value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="others">Others</option>
+
+                </select>
+        </div>
+         
+        <div class="inputText">
+            <label for="phone">Phone Number</label>
+            <input type="number" id="phoneNumber" data-testid="phoneNumber" required>
+        </div>
+
+        <div class="inputText">
+            <label for="password">Password</label>
+            <input type="password" id="password" data-testid="password" required>
+        </div>
+        
+        <div class="inputText">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="text" id="confirmPassword" data-testid="password" required>
+        </div>
+
+        <div class="error" id="error"></div>
+        <input type="submit" value="submit" id="submit" data-testid="submit">
+        
+    </form>      
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
